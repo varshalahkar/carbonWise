@@ -1,0 +1,379 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #023020;
+  background: #f4fff9;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.auth-bg {
+  position: relative;
+  isolation: isolate;
+}
+
+.auth-bg::before {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  content: "";
+  background-image: url("/forest-auth.jpg");
+  background-position: center;
+  background-size: cover;
+  animation: forestZoom 28s ease-in-out infinite alternate;
+}
+
+.auth-bg::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background: rgba(2, 48, 32, 0.45);
+}
+
+.auth-overlay {
+  background:
+    linear-gradient(90deg, rgba(2, 48, 32, 0.24), rgba(2, 48, 32, 0.12) 46%, rgba(2, 48, 32, 0.64)),
+    radial-gradient(circle at 78% 18%, rgba(127, 255, 212, 0.16), transparent 34%);
+}
+
+.auth-input,
+.field-input {
+  width: 100%;
+  border-radius: 8px;
+  outline: none;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+.auth-input {
+  border: 1px solid rgba(159, 226, 191, 0.45);
+  background: rgba(255, 255, 255, 0.12);
+  padding: 0.9rem 1rem;
+  color: #ffffff;
+}
+
+.auth-input:focus {
+  border-color: #7fffd4;
+  box-shadow: 0 0 0 4px rgba(127, 255, 212, 0.16);
+}
+
+.field-input {
+  border: 1px solid #9fe2bf;
+  background: #ffffff;
+  padding: 0.9rem 1rem;
+  color: #023020;
+}
+
+.field-input:focus {
+  border-color: #00a36c;
+  box-shadow: 0 0 0 4px rgba(64, 224, 208, 0.18);
+}
+
+.living-earth-wrap {
+  position: relative;
+  display: grid;
+  width: min(70vw, 620px);
+  min-width: 270px;
+  aspect-ratio: 1;
+  place-items: center;
+}
+
+.living-earth {
+  position: relative;
+  width: 78%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 9999px;
+  opacity: 0.85;
+  background:
+    radial-gradient(circle at 32% 28%, rgba(127, 255, 212, 0.55), transparent 0 10%, transparent 18%),
+    radial-gradient(circle at 62% 70%, rgba(64, 224, 208, 0.4), transparent 0 12%, transparent 20%),
+    linear-gradient(120deg, #096b79, #40b5ad 42%, #023020);
+  box-shadow:
+    inset -28px -22px 60px rgba(2, 48, 32, 0.54),
+    inset 18px 16px 38px rgba(127, 255, 212, 0.25),
+    0 0 58px rgba(125, 249, 255, 0.42);
+  animation:
+    earthRotate 20s linear infinite,
+    earthPulse 4.4s ease-in-out infinite;
+}
+
+.living-earth::before,
+.living-earth::after {
+  position: absolute;
+  inset: -8%;
+  content: "";
+  border-radius: 9999px;
+  background-size: 72% 60%, 52% 46%, 68% 58%, 44% 42%;
+  animation: landDrift 20s linear infinite;
+}
+
+.living-earth::before {
+  background-image:
+    radial-gradient(ellipse at 30% 36%, #50c878 0 18%, transparent 19%),
+    radial-gradient(ellipse at 66% 34%, #2e8b57 0 14%, transparent 15%),
+    radial-gradient(ellipse at 48% 66%, #98fb98 0 17%, transparent 18%),
+    radial-gradient(ellipse at 76% 72%, #00a36c 0 12%, transparent 13%);
+}
+
+.living-earth::after {
+  background:
+    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.14), transparent),
+    radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.22), transparent 21%);
+  mix-blend-mode: screen;
+}
+
+.earth-low {
+  filter: grayscale(0.42) saturate(0.72);
+  box-shadow:
+    inset -28px -22px 60px rgba(2, 48, 32, 0.6),
+    0 0 28px rgba(150, 222, 209, 0.24);
+}
+
+.earth-moderate {
+  filter: saturate(0.9);
+}
+
+.earth-healthy {
+  filter: saturate(1.18);
+}
+
+.earth-unknown {
+  filter: grayscale(0.25) saturate(0.8);
+}
+
+.earth-cloud {
+  position: absolute;
+  z-index: 2;
+  height: 12%;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.48);
+  filter: blur(5px);
+  animation: cloudMove 12s linear infinite;
+}
+
+.earth-cloud-one {
+  top: 26%;
+  left: 14%;
+  width: 34%;
+}
+
+.earth-cloud-two {
+  top: 52%;
+  left: 50%;
+  width: 38%;
+  animation-duration: 16s;
+}
+
+.earth-cloud-three {
+  top: 68%;
+  left: 18%;
+  width: 24%;
+  animation-duration: 19s;
+}
+
+.leaf-field,
+.particle-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.leaf-field span {
+  position: absolute;
+  display: block;
+  width: 16px;
+  height: 9px;
+  border-radius: 100% 0 100% 0;
+  background: #98fb98;
+  opacity: 0.85;
+  animation: floatLeaf 8s ease-in-out infinite;
+}
+
+.leaf-count-sparse span:nth-child(n + 4),
+.leaf-count-quiet span:nth-child(n + 3) {
+  opacity: 0;
+}
+
+.leaf-field span:nth-child(1) {
+  top: 16%;
+  left: 16%;
+}
+
+.leaf-field span:nth-child(2) {
+  top: 34%;
+  right: 12%;
+  animation-delay: 1s;
+}
+
+.leaf-field span:nth-child(3) {
+  bottom: 20%;
+  left: 22%;
+  animation-delay: 2s;
+}
+
+.leaf-field span:nth-child(4) {
+  top: 64%;
+  right: 18%;
+  animation-delay: 1.6s;
+}
+
+.leaf-field span:nth-child(5) {
+  top: 12%;
+  right: 34%;
+  animation-delay: 2.6s;
+}
+
+.leaf-field span:nth-child(6) {
+  bottom: 13%;
+  right: 40%;
+  animation-delay: 3.3s;
+}
+
+.particle-field span {
+  position: absolute;
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  background: #7df9ff;
+  opacity: 0.7;
+  animation: particleLift 7s ease-in-out infinite;
+}
+
+.particle-field span:nth-child(1) {
+  top: 20%;
+  left: 12%;
+}
+
+.particle-field span:nth-child(2) {
+  top: 30%;
+  right: 16%;
+  animation-delay: 1s;
+}
+
+.particle-field span:nth-child(3) {
+  bottom: 22%;
+  left: 18%;
+  animation-delay: 2s;
+}
+
+.particle-field span:nth-child(4) {
+  bottom: 18%;
+  right: 19%;
+  animation-delay: 3s;
+}
+
+.particle-field span:nth-child(5) {
+  top: 9%;
+  left: 46%;
+  animation-delay: 1.7s;
+}
+
+.particle-field span:nth-child(6) {
+  bottom: 7%;
+  left: 52%;
+  animation-delay: 2.4s;
+}
+
+@keyframes forestZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes earthRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes earthPulse {
+  0%,
+  100% {
+    box-shadow:
+      inset -28px -22px 60px rgba(2, 48, 32, 0.54),
+      inset 18px 16px 38px rgba(127, 255, 212, 0.25),
+      0 0 48px rgba(125, 249, 255, 0.35);
+  }
+  50% {
+    box-shadow:
+      inset -28px -22px 60px rgba(2, 48, 32, 0.5),
+      inset 18px 16px 38px rgba(127, 255, 212, 0.3),
+      0 0 78px rgba(127, 255, 212, 0.52);
+  }
+}
+
+@keyframes landDrift {
+  from {
+    transform: translateX(-4%) rotate(0deg);
+  }
+  to {
+    transform: translateX(4%) rotate(-360deg);
+  }
+}
+
+@keyframes cloudMove {
+  from {
+    transform: translateX(-35%);
+  }
+  to {
+    transform: translateX(35%);
+  }
+}
+
+@keyframes floatLeaf {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(15deg);
+  }
+  50% {
+    transform: translate3d(18px, -32px, 0) rotate(62deg);
+  }
+}
+
+@keyframes particleLift {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(-34px);
+    opacity: 0.9;
+  }
+}
+
+@media (max-width: 640px) {
+  .living-earth-wrap {
+    width: min(92vw, 440px);
+  }
+}
