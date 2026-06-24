@@ -1,7 +1,7 @@
-import type { Request } from "express";
+import type { AuthRequest } from "../types/authRequest.js";
 import { ApiError } from "./ApiError.js";
 
-export function getUserId(request: Request): string {
+export function getUserId(request: AuthRequest): string {
   if (!request.user) {
     throw new ApiError(401, "Authentication required");
   }
